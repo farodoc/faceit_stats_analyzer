@@ -1,0 +1,21 @@
+﻿@model List<TestViewModel>
+
+
+@{
+    ViewData["Title"] = "Test Page";
+}
+
+<table bgcolor="black">
+    <tr bgcolor="orange">
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr bgcolor="lightgrey">
+            <td>@item.Name</td>
+            <td>@item.Description</td>
+        </tr>
+    }
+</table>
