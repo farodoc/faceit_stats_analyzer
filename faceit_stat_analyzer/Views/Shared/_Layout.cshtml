@@ -20,13 +20,16 @@
                 <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
                     <ul class="navbar-nav flex-grow-1">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home Page</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TestPage">Test Page</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TestPage">Table</a>
+                        </li>
+                        <li class="button">
+                            <a class="button" href="https://www.faceit.com" aria-label="Go to Faceit" target="_blank" text-align: right;>Faceit</a>
                         </li>
                     </ul>
                 </div>
@@ -50,3 +53,22 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+<style>
+    body {
+        background-image: linear-gradient(to bottom, black, rgb(252, 132, 3));
+    }
+
+    .button {
+        border-radius: 5px;
+        background-color: orange;
+        text-align: center;
+        display: inline-block;
+        font-size: 15px;
+        margin: 5px 5px;
+        cursor: pointer;
+    }
+    }
+
+        
+</style>

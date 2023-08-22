@@ -1,21 +1,70 @@
-﻿@model List<TestViewModel>
+﻿@model List<GameViewModel>
 
 
 @{
-    ViewData["Title"] = "Test Page";
+    ViewData["Title"] = "Table";
 }
 
-<table bgcolor="black">
-    <tr bgcolor="orange">
-        <th>Name</th>
-        <th>Description</th>
+<table id="matches">
+    <tr class="title-row">
+        <th align="right">Date</th>
+        <th>Score</th>
+        <th>Elo</th>
+        <th>Gain</th>
+        <th>Map</th>
+        <th>Team</th>
+        <th>Stats</th>
+        <th>Kd</th>
+        <th>Kr</th>
+        <th>Hs</th>
+        <th>Hltv</th>
     </tr>
 
     @foreach (var item in Model)
     {
-        <tr bgcolor="lightgrey">
-            <td>@item.Name</td>
-            <td>@item.Description</td>
+        <tr class="single-game">
+            <td>@item.Date</td>
+            <td>@item.Score</td>
+            <td>@item.EloAfter</td>
+            <td>@item.EloGain</td>
+            <td>@item.Map</td>
+            <td>@item.Team</td>
+            <td>@item.Stats</td>
+            <td>@item.Kd</td>
+            <td>@item.Kr</td>
+            <td>@item.Hs</td>
+            <td>@item.HLTV</td>
         </tr>
     }
 </table>
+
+<style>
+    #matches {
+        height: 1000px;
+        width: 1285px;
+    }
+
+    .title-row{
+        text-align: center;
+        background-color: orange;
+    }
+
+    .single-game{
+        color: white;
+        text-align: center;
+        background-color: rgb(59, 62, 69);
+        border-radius: 25px;
+        border: 2px solid #73AD21;
+    }
+
+    td:first-child,
+    th:first-child {
+        border-radius: 15px 0 0 15px;
+    }
+
+
+    td:last-child,
+    th:last-child {
+        border-radius: 0 15px 15px 0;
+    }
+</style>
