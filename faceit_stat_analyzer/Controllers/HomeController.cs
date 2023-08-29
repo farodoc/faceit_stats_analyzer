@@ -1,4 +1,6 @@
-﻿using faceit_stat_analyzer.Models;
+﻿using faceit_stat_analyzer.API;
+using faceit_stat_analyzer.API.Models;
+using faceit_stat_analyzer.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -15,17 +17,23 @@ namespace faceit_stat_analyzer.Controllers
 
         public IActionResult Index()
         {
+            return RedirectToAction("Matches");
+        }
+
+        public IActionResult Dupa()
+        {
+            ApiHelper help = new ApiHelper();
+            PlayerInfo res = help.GetPlayerInfo("--faro--");
+
             return View();
         }
 
-
-
-        public IActionResult TestPage()
+        public IActionResult Matches()
         {
-            List<GameViewModel> list = new List<GameViewModel>();
+            var list = new List<MatchViewModel>();
             for (int i = 0; i < 20; i++)
             {
-                list.Add(new GameViewModel
+                list.Add(new MatchViewModel
                 {
                     Date = new DateTime(2023, 8, 22),
                     Score = "16:0",
@@ -41,10 +49,33 @@ namespace faceit_stat_analyzer.Controllers
                     Hs = 63,
                     HLTV = 2.31
 
-                }); ;
+                });
             }
 
-            return View(list);
+            MatchesPageViewModel matchesPageViewModel = new MatchesPageViewModel();
+
+            ApiHelper helper = new ApiHelper();
+            PlayerInfo playerInfoResponse = helper.GetPlayerInfo("--faro--");
+            PlayerInfoViewModel playerInfo = new PlayerInfoViewModel();
+            playerInfo.Nick = playerInfoResponse.nickname;
+            playerInfo.Avatar = playerInfoResponse.avatar;
+            matchesPageViewModel.PlayerInfo = playerInfo;
+
+            List<MatchInfo> playerMatchesResponse = helper.GetPlayerMatches(playerInfoResponse.player_id);
+            matchesPageViewModel.Matches = new List<MatchViewModel>();
+
+            foreach(var match in playerMatchesResponse.Take(3))
+            {
+                var matchDetails = helper.GetSingleMatchDetails(match.match_id);
+                matchesPageViewModel.Matches.Add(
+                    new MatchViewModel
+                    {
+                        Map = matchDetails.voting.map.pick[0]
+                    });
+            }
+
+            matchesPageViewModel.Matches.AddRange(list);
+            return View(matchesPageViewModel);
         }
 
         public IActionResult Privacy()

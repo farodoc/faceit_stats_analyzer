@@ -2,7 +2,7 @@
 
 namespace faceit_stat_analyzer.Models
 {
-    public class GameViewModel
+    public class MatchViewModel
     {
         public DateTime Date;
         public string Score;
@@ -19,3 +19,10 @@ namespace faceit_stat_analyzer.Models
         public double HLTV;
     }
 }
+
+
+//public class basemodel
+//{
+//    public playerinfomodel playerinfo
+//        public List<GameViewModel> matches
+//}

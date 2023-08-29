@@ -26,12 +26,15 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="TestPage">Table</a>
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Matches">Matches</a>
                         </li>
                         <li class="button">
                             <a class="button" href="https://www.faceit.com" aria-label="Go to Faceit" target="_blank" text-align: right;>Faceit</a>
                         </li>
                     </ul>
+                    <input type="button"
+                           value="Go Somewhere Else"
+                           onclick="location.href='@Url.Action("Dupa", "Home")'" />
                 </div>
             </div>
         </nav>
@@ -56,7 +59,8 @@
 
 <style>
     body {
-        background-image: linear-gradient(to bottom, black, rgb(252, 132, 3));
+        /* background-image: linear-gradient(to bottom, black, orange); */
+        background-color: rgb(22, 24, 28);
     }
 
     .button {
@@ -68,7 +72,6 @@
         margin: 5px 5px;
         cursor: pointer;
     }
-    }
 
-        
+    }
 </style>
