@@ -2,7 +2,9 @@
 using faceit_stat_analyzer.API.Models;
 using faceit_stat_analyzer.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Diagnostics;
+using System.Globalization;
 
 namespace faceit_stat_analyzer.Controllers
 {
@@ -64,13 +66,20 @@ namespace faceit_stat_analyzer.Controllers
             List<MatchInfo> playerMatchesResponse = helper.GetPlayerMatches(playerInfoResponse.player_id);
             matchesPageViewModel.Matches = new List<MatchViewModel>();
 
-            foreach(var match in playerMatchesResponse.Take(3))
+
+            foreach (var match in playerMatchesResponse.Take(3))
             {
                 var matchDetails = helper.GetSingleMatchDetails(match.match_id);
+
                 matchesPageViewModel.Matches.Add(
                     new MatchViewModel
                     {
-                        Map = matchDetails.voting.map.pick[0]
+                        Team = matchDetails.teams.faction1.nickname,
+                        Map = matchDetails.voting.map.pick[0],
+                        Date = DateTimeOffset.FromUnixTimeSeconds(matchDetails.configured_at).LocalDateTime
+
+                        //EloAfter = playerInfoResponse.games.csgo.faceit_elo,
+                        //Score = matchDetails.results.ToString
                     });
             }
 

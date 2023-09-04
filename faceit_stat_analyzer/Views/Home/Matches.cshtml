@@ -3,8 +3,22 @@
 @{
     ViewData["Title"] = "Matches";
 }
-<p class="header"><img height="100" src="@Model.PlayerInfo.Avatar"></p>
-<p class="header">@Model.PlayerInfo.Nick    </p>
+
+<div class="row">
+    <div class="column left" style="background-color:rgb(59, 62, 69);">
+        <h2>Lifetime stats:</h2>
+    </div>
+
+    <div class="column middle" style="background-color:rgb(59, 62, 69);">
+        <p class="avatar"><img height="200" src="@Model.PlayerInfo.Avatar" style="border:5px solid orange; padding:3px; margin:5px"></p>
+        <p class="nick">@Model.PlayerInfo.Nick    </p>
+    </div>
+
+    <div class="column right" style="background-color:rgb(59, 62, 69);">
+        <h2>Last 20 matches:</h2>
+    </div>
+
+</div>
 
 <table id="matches">
     <tr class="title-row">
@@ -44,12 +58,45 @@
         height: 1200px;
         width: 1285px;
         border-collapse: separate;
-        border-spacing: 0px 10px;
+        border-spacing: 0px 12px;
     }
 
-    .header {
+    {
+        box-sizing: border-box;
+    }
+
+    .column {
+        float: left;
+        padding: 10px;
+        height: 300px;
+    }
+
+    .left, .right {
         color: white;
         text-align: center;
+        width: 40%;
+    }
+
+    .middle {
+        width: 20%;
+    }
+
+    .row:after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+
+    .avatar {
+        color: white;
+        text-align: center;      
+    }
+
+    .nick {
+        color: white;
+        text-align: center;
+        font-size: 30px;
+        font-family: 'Comic Sans MS';
     }
 
     .title-row {
@@ -72,30 +119,30 @@
     }
 
     td:first-child {
-        border-top-width: 5px;
+        border-top-width: 3px;
         border-top-color: green;
-        border-bottom-width: 5px;
+        border-bottom-width: 3px;
         border-bottom-color: green;
-        border-left-width: 5px;
+        border-left-width: 3px;
         border-left-color: green;
         border-radius: 20px 0 0 20px;
     }
 
 
     td:last-child {
-        border-top-width: 5px;
+        border-top-width: 3px;
         border-top-color: green;
-        border-bottom-width: 5px;
+        border-bottom-width: 3px;
         border-bottom-color: green;
-        border-right-width: 5px;
+        border-right-width: 3px;
         border-right-color: green;
         border-radius: 0 20px 20px 0;
     }
 
     td:not(:first-child:last-child) {
-        border-top-width: 5px;
+        border-top-width: 3px;
         border-top-color: green;
-        border-bottom-width: 5px;
+        border-bottom-width: 3px;
         border-bottom-color: green;
     }
 </style>
