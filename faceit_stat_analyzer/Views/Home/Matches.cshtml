@@ -44,7 +44,7 @@
             <td>@item.EloGain</td>
             <td>@item.Map</td>
             <td>@item.Team</td>
-            <td>@item.Stats</td>
+            <td>@item.Kills - @item.Deaths - @item.Assists</td>
             <td>@item.Kd</td>
             <td>@item.Kr</td>
             <td>@item.Hs%</td>
@@ -55,10 +55,11 @@
 
 <style>
     #matches {
-        height: 1200px;
-        width: 1285px;
+        text-align: center;
+        height: 1400px;
+        width: 1295px;
         border-collapse: separate;
-        border-spacing: 0px 12px;
+        border-spacing: 0px 5px;
     }
 
     {
@@ -101,12 +102,14 @@
 
     .title-row {
         text-align: center;
+        font-size: 18px;
         background-color: orange;
     }
 
     .single-game {
         color: white;
         text-align: center;
+        font-size: 18px;
         background-color: rgb(59, 62, 69);
     }
 
@@ -120,29 +123,29 @@
 
     td:first-child {
         border-top-width: 3px;
-        border-top-color: green;
+        border-top-color: rgb(25, 252, 0);
         border-bottom-width: 3px;
-        border-bottom-color: green;
+        border-bottom-color: rgb(25, 252, 0);
         border-left-width: 3px;
-        border-left-color: green;
+        border-left-color: rgb(25, 252, 0);
         border-radius: 20px 0 0 20px;
     }
 
 
     td:last-child {
         border-top-width: 3px;
-        border-top-color: green;
+        border-top-color: rgb(25, 252, 0);
         border-bottom-width: 3px;
-        border-bottom-color: green;
+        border-bottom-color: rgb(25, 252, 0);
         border-right-width: 3px;
-        border-right-color: green;
+        border-right-color: rgb(25, 252, 0);
         border-radius: 0 20px 20px 0;
     }
 
     td:not(:first-child:last-child) {
         border-top-width: 3px;
-        border-top-color: green;
+        border-top-color: rgb(25, 252, 0);
         border-bottom-width: 3px;
-        border-bottom-color: green;
+        border-bottom-color: rgb(25, 252, 0);
     }
 </style>

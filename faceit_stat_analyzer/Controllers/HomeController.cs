@@ -46,9 +46,9 @@ namespace faceit_stat_analyzer.Controllers
                     Map = "de_mirage",
                     Team = "team_--faro--",
                     Stats = "31-5-6",
-                    Kd = 5.16,
-                    Kr = 1.93,
-                    Hs = 63,
+                    Kd = "5.16",
+                    Kr = "1.93",
+                    Hs = "63",
                     HLTV = 2.31
 
                 });
@@ -70,16 +70,23 @@ namespace faceit_stat_analyzer.Controllers
             foreach (var match in playerMatchesResponse.Take(3))
             {
                 var matchDetails = helper.GetSingleMatchDetails(match.match_id);
+                var matchStats = helper.GetSingleMatchStats(match.match_id);
+                var myTeam = matchStats.rounds[0].teams.Where(x => x.players.Any(p => p.player_id == playerInfoResponse.player_id)).First();
+                var me = myTeam.players.First(x => x.player_id == playerInfoResponse.player_id);
 
                 matchesPageViewModel.Matches.Add(
                     new MatchViewModel
                     {
-                        Team = matchDetails.teams.faction1.nickname,
+                        Team = myTeam.team_stats.Team,
                         Map = matchDetails.voting.map.pick[0],
-                        Date = DateTimeOffset.FromUnixTimeSeconds(matchDetails.configured_at).LocalDateTime
-
-                        //EloAfter = playerInfoResponse.games.csgo.faceit_elo,
-                        //Score = matchDetails.results.ToString
+                        Date = DateTimeOffset.FromUnixTimeSeconds(matchDetails.configured_at).LocalDateTime,
+                        Score = matchStats.rounds[0].round_stats.Score,
+                        Kd = me.player_stats.KDRatio,
+                        Kr = me.player_stats.KRRatio,
+                        Hs = (int.Parse(me.player_stats.Headshots) * 100 / (double)int.Parse(me.player_stats.Kills)).ToString().Substring(0, 2),
+                        Kills = me.player_stats.Kills,
+                        Deaths = me.player_stats.Deaths,
+                        Assists = me.player_stats.Assists
                     });
             }
 

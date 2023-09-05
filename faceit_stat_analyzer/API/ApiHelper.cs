@@ -47,5 +47,18 @@ namespace faceit_stat_analyzer.API
 
             return deserialized;
         }
+
+        public SingleMatchStats GetSingleMatchStats(string matchId)
+        {
+            RestClient client = new RestClient($"https://open.faceit.com/data/v4/matches/{matchId}/stats");
+            var request = new RestRequest();
+            request.AddHeader("accept", "application/json");
+            request.AddHeader("Authorization", "Bearer " + API_KEY);
+
+            var response = client.Execute(request);
+            var deserialized = JsonConvert.DeserializeObject<SingleMatchStats>(response.Content);
+
+            return deserialized;
+        }
     }
 }

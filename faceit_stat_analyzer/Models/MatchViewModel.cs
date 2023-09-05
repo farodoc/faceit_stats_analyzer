@@ -13,16 +13,12 @@ namespace faceit_stat_analyzer.Models
         public string Map;
         public string Team;
         public string Stats;
-        public double Kd;
-        public double Kr;
-        public int Hs;
+        public string Kd;
+        public string Kr;
+        public string Hs;
         public double HLTV;
+        public string Kills;
+        public string Deaths;
+        public string Assists;
     }
 }
-
-
-//public class basemodel
-//{
-//    public playerinfomodel playerinfo
-//        public List<GameViewModel> matches
-//}
